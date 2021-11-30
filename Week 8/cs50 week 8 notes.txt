@@ -1,0 +1,115 @@
+cs50 week 8:
+
+The internet: A global network of computers
+
+Internet data protocols: Many types, including TCP/IP
+
+IP, Internet Protocol: how computers address each other
+DNS, Domain Name System: A service, provided by your ISP, to change words in urls to IP addresses
+TCP, Transmission Control Protocol: Allows different types of technologies/services to be provided by 1 server, controlled using port numbers. TCP also handles delivery and error-handling, will resend data if the send fails.
+
+HTTP, Hyper-Text Transfer Protocol: Protocol for web browsers and web servers, describing content sent over the internet
+
+GET: A http request to GET some data
+POST
+
+HTML: a markup language, composed of tags and attributes
+f12: developer tools -> elements tab
+
+common html tags:
+<b>, <i>, <u>: bold, italic, underline
+<p>: paragraphs
+<h#>: header, h1 through h6, different sized headers
+<ul>, <ol>, <li>: unordered lists, ordered lists, list items (which go inside lists)
+<table>, <tr>, <td>: start a table, start a table's row, start a table's row's data cell (aka column)
+
+<form>: start a form
+<input name=X, type=Y/>: define a field within a form, of id X, with data type Y. Is self-closing
+
+<div>: demarcates an arbitrary division in a page
+
+<a href=x>: "anchor hyperlink reference = x", creates a link to a web page
+<img src=x />: img tag, presents to an image. Is self-closing
+
+<!DOCTYPE html>: announces to the browser that this webpage is using html5, allowing you to use html5-specific tags and attributes
+
+<!-- -->: HTML comments tag
+
+
+CSS: Cascading Style Sheets. A styling language, used to customize the website's look and feel. Lacks logic.
+
+styles are constructed in the form:
+
+selector { declaration; }, or selector { property:value; }
+ex: body { background-color: blue; } makes the background color of the body turn blue
+
+Common CSS elements and properties
+border: style color width
+background-color: keyword or 6-digit hex code
+color: keyword or hex code (sets the foreground color, typically the text color)
+font-size: absolute or relative size, can use keywords (small, medium), fixed points (10pt, 12pt), percentages (80%, 90%), or relative to prior font size (smaller, larger)
+font-family: font name or generic name. Use web-safe fonts that are pre-defined in CSS
+text-align: left, right, center, justify
+
+Selectors work on html tags (body, h2, etc.) and also unique IDs that are defined in your html page. Most HTML tags can have a unique ID attribute. IDs are prefixed with a # in html
+
+ex: #uniqueID { border: 4px dotted blue; }
+
+Selectors can also apply to a class: any set of HTML tags that have been given a class attribute. Classes are prefixed with a .
+
+ex: .students {background-color: yellow; opacity: 0.7; }
+
+Linking stylesheets:
+Stylesheets can be defined in the HTML page, within <style></style> tags.
+However, it's better to create an external file and link it:
+<head> <link href="tables.css" rel="stylesheet" /> </head>
+
+
+Javascript
+Include JS with <script src=file.js> tag. Can also write JS inline with HTML. Don't.
+
+variables:
+var x = 44;
+
+Conditionals: if, else if, switch, ?:, etc. are available
+Loops: while, do-while, for, are available
+Functions: Of the format function Name {}, but can also be anonymous (like python lambdas)
+Arrays: var nums = [1, 2, true, 3.33, "five"]; can mix types
+
+JS can behave different ways: it can be an object-oriented language, and it can also break its own rules. 
+
+New kinds of available loops:
+for (var key in object) { /* iterate over key */ }
+for (var key of object) { /* iterate over object[key] */ }
+
+Events: A response to a user doing something (click, touch, hover, reload, etc.)
+
+
+DOM, the Document Object Model
+
+has a tree structure
+
+Some common DOM properties and their descriptions:
+innerHTML: holds the HTML inside a set of HTML tags
+nodeName: the name of an HTML element or element's attribute
+id: the "id" attribute of an HTML element
+parentNode: refers to the node one level up
+childNodes: an arry of references to the nodes one level down
+attributes: an array of the attributes of an HTML element
+style: an object that holds the CSS/HTML styling of an element
+
+Some common DOM elements and their descriptions:
+getElementById(id): gets the element with the given ID
+getElementsByTagName(tag): gets all the elements with a given tag
+appendChild(node): Add the given node to the DOM
+removeChild(node): Remove the given child node from the DOM
+
+jQuery: a simplified way to work with the DOM
+Probably the most popular JS library
+
+basic JS fn to change background color:
+document.getElementById('colorDiv').style.backgroundColor = 'green'
+in jQuery:
+$('#colorDiv').css('background-color', 'green');
+
+

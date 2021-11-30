@@ -1,0 +1,72 @@
+cs50 SQL notes
+
+Spreadsheets strengths and weaknesses:
+Strengths:
+Good at sorting
+Common to use
+visual
+
+
+Weaknesses:
+Limits on amount of data you can use
+Static schema
+
+flat-file database:
+	single, 1-file database. commonly CSV 
+
+Lambda functions: One-line functions
+Lambda functions are anonymous (nameless) functions
+Still takes arguments, returns a value.
+of the form:
+lambda <arg>: <expression or value to return>
+ex:
+lamba x: x**2, takes x, returns x^2
+
+
+relational databases:
+SQLite
+uses a single binary file to store all data
+to interact with that blob, use sqlite3, a cli tool
+
+loading data onto a sqlite db:
+load via sqlite3
+or, load via python
+
+.mode (ex: .mode csv, or .mode xls, tsv (tab sep val))
+.import <filename> <table name>
+
+SQL: Structured Query Language, a language to maniuplate data
+CRUD: Create, Read, Update, Delete
+
+corresponding SQL commands for crud:
+CREATE, INSERT (initialize table+data vs add data)
+SELECT (in for read)
+UPDATE
+DELETE
+
+sqlite3 commands start with a .
+.mode <filetype>
+.import <filename> <table name>
+.schema: returns the CREATE TABLE command used
+
+SQLite has 5 major datatypes:
+blob ("Binary Large OBject")
+integer (typically 32 bits)
+numeric (Formatted numbers, like datetimes or bools)
+real
+text
+
+Also has:
+NOT NULL
+UNIQUE
+Primary and Foreign keys
+
+
+Using Python and SQLite together:
+import sqlite3
+
+
+
+
+
+

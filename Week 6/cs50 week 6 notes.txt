@@ -1,0 +1,137 @@
+cs50 week 6: Python
+
+python is popular, and much simpler than C.
+
+Python syntax:
+
+Hello, Word:
+c:  printf("hello, word\n");
+py: print("hello, world")
+
+Strings:
+c:
+#include <cs50.h>
+string answer = get_string("What's your name? ");
+printf("hello, %s\n", answer);
+
+py:
+from cs50 import get_string
+answer = get_string("What's your name? ")
+OR: answer = input("What's your name? ") # no cs50 lib
+print("hello, " + answer)
+OR: print(f"hello, {answer}") # fstrings: print-format
+
+If statements:
+c:
+if (x < y) { printf("x is less than y\n"); }
+else if (x > y) { printf("x is greater than y\n"); }
+else { printf("x is equal to y\n"); }
+
+py:
+if x < y:
+	print("x is less than y") # must tab 4 spaces
+elif x > y:
+	print("x is greater than y")
+else:
+	print("x is equal to y)
+
+Loops:
+c:
+while (true) { printf("hello, word\n"); }
+
+py:
+while True:
+	print("hello, world)
+
+c:
+for (int i = 0; i<3; i++) { printf("hello, world\n"); }
+py:
+for i in [0, 1, 2]:
+	print("hello, world")
+
+Python lists are in brackets, like [0,1,2], are equivalent to C arrays
+
+more typically:
+for i in range(3):
+	print("hello, world")
+
+Datatypes:
+c: bool, char, double, float, int, long, string, etc.
+C is a strongly-typed language, types must be explicit
+
+py: bool, float, int, str
+also: range, list, tuple, dict, set
+Python is loosely-typed language, can be inferred implicitly
+list is an array that resizes itself
+tuples: pairs of values, like coordinates
+dicts: key/value pairs
+sets: collection of values, without duplicates
+
+
+Python is an interpreted language, not compiled like C
+the Python program takes python-syntax source code and interprets it into machine code
+
+
+Namespacing: having multiple variable names or functions existing in the same program, but in different namespaces. 
+ex: imagine 2 libraries that have 2 functions that share a name. Avoid a namespace collision by prefixing the function names with their respective libraries, i.e.:
+import math
+import stats
+x = math.average([1,2,3])
+y = stats.average([1,2,3])
+
+When using a main() function, remember to call main() at the bottom of the program. Only use
+if __name__ == "__main__":
+	main()
+when implementing libraries. Not necessary for individual programs.
+
+Python does not have a DO-WHILE loops. Does have WHILE loops. So instead, do something WHILE True, and if it's good, then break. i.e.:
+
+def get_positive_int():
+	while True:
+		n = get_int("Input positive int: ")
+		if n > 0;
+			break # This is pythonic
+	return n
+
+Using print():
+print() takes multiple arguments, including one called end, which defines the ending character of the line. Default value for end is \n. So to print without a trailing newline, do print("text", end="")
+
+In C, integers have overflow. They cap at 2 or 4 billion
+Python does not have integer overflow, will extend to arbitrarily large numbers.
+
+Python still does have floating-point imprecision. There's still a limit to how precise real numbers can be
+
+
+Command-Line arguments:
+need to import: from sys import argv
+The initial (0th, when called) argument is the program's name itself. CLI User inputs start at argv[1]
+
+
+Exit statuses:
+from sys import exit
+exit() returns a value when the program exits
+e.g.: exit(0) if good, exit(1) if error
+
+
+Dicts:
+syntax:
+phonebook = {"Dave":"9143105141", "Laura":"9147332235"}
+use:
+name = "Laura"
+if name in phonebook:
+	print(f"Number: {phonebook[name]}")
+> 9147332235
+
+
+
+
+
+
+
+
+
+
+
+
+
+

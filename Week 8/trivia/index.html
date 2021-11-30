@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+            // let q1 = document.querySelector(".button");
+            // function q1(answer) {
+            //     if (answer === 'ah') {
+            //         q1.style.button.backgroundColor = 'red';
+            //     }
+            // }
+            let elem1  = document.getElementsByClassName("jumbotron");
+            
+            function q1check(id) {
+                elem1.style.backgroundColor = "Blue";
+                let elem  = document.getElementsByClassName('container');
+                if (id === 'gw') {
+                    elem.style.backgroundColor = "Red";
+                }
+                else {
+                    elem.style.backgroundColor = "Green";
+                }
+            }
+
+
+        </script>
+    </head>
+
+    <body>
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="q1">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>Who was NOT a president of the United States?</h3>
+                <input class=q1b value="George Washington" onclick="q1check('gw')" type='button'>
+
+                <!-- <button onclick="q1('gw')" type="button">George Washington</button>
+                <button onclick="q1('ah')" type="button">Alexander Hamilton</button>
+                <button onclick="q1('jg')" type="button">James Garfield</button>
+                <button onclick="q1('gc')" type="button">Grover Cleveland</button> -->
+
+                <p id="feedback1"></p>
+
+            </div>
+
+            <div class="section2">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>Who was the third president of the United States?</h3>
+                <form action="">
+                    <input type="test" placeholder="Answer">
+                    <button onclick="q2()" type="input" value="Submit" />
+                </form>
+
+                <p id="feedback2"></p>
+            </div>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+sort1 uses: Bubble Sort
+
+How do you know?:
+Faster than Selection sort, slower than Merge sort on random items.
+
+
+sort2 uses: Merge Sort
+
+How do you know?:
+It's the fastest sort
+
+sort3 uses: Selection Sort
+
+How do you know?:
+It's the slowest sort across random and sorted items.
+
+
+
+time ./sort1 random5000.txt
+real    0m0.142s
+user    0m0.049s
+sys     0m0.016s
+
+time ./sort2 random5000.txt
+real    0m0.010s
+user    0m0.005s
+sys     0m0.005s
+
+time ./sort3 random5000.txt
+real    0m0.075s
+user    0m0.031s
+sys     0m0.008s
+
+time .sort1 sorted5000.txt
+real    0m0.015s
+user    0m0.000s
+sys     0m0.015s
+
+time .sort2 sorted5000.txt
+real    0m0.011s
+user    0m0.000s
+sys     0m0.011s
+
+time .sort3 sorted5000.txt
+real    0m0.049s
+user    0m0.028s
+sys     0m0.008s

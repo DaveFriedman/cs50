@@ -1,0 +1,97 @@
+CS50 Week 5
+Data Structures w/ Doug Lloyd
+https://video.cs50.io/3uGchQbk7g8
+
+4 basic forms of data structure:
+Arrays
+Linked Lists
+Hash Tables
+Tries
+
+Variations on those 4 lead to trees and heaps
+- similar to tries
+stacks and queues
+- similar to arrays and linked lists
+
+weighing pros & cons of data structures, so you know what structure to use.
+
+Arrays:
+Arrays are data held in contiguous blocks of memory
+Fixed size though, inflexible/immutable
+- Changing size requires copy/pasting the whole array into a new area of memory
+Bad at insertion. Hard to insert anywhere else but the end of an array. Requires a lot of shifting otherwise.
+Bad at deletion. Deleting also requrires a lot of shifting.
+Lookup is great: constant time big0(c)
+Easy to sort, data is typically ordered because you have it all when you create the array
+Small on disk
+
+Linked Lists (LLs):
+Linked lists are data in noncontiguous blocks of memory: includes both memory and pointer to next block of memory
+Not fixed size, just point to the next block
+Good at insertion, just insert at the front and point to the (now-second) block of data
+Good at deletion, once you find the block to delete
+Hard to Sort, but with workarounds:
+- If you sort as you insert, you sort fast but insert slow
+Bad at lookup, big0(n), since you have to go through the whole list
+Small on disk, though larger than arrays
+
+More on Singly-Linked Lists: https://video.cs50.io/zQI3FyWm144
+Creating the linked-list structure, in C:
+typedef struct node
+{
+	value val;
+	struct list* next;
+}
+node;
+- Create the struct type that is a (singlely) LL
+
+Creating a linked list:
+node* newNode = create(value val);
+In this case, create() is:
+- malloc'ing the space for the new node
+- checking to make sure we don't run out of memory (avoiding segfault)
+- initializing the val field
+- initializing the node field
+- returning a pointer for the newly-created node, to newNode
+
+
+Searching through a linked list:
+Insert a node into the linked list:
+Delete a node in the linked list:
+Delete an entire linked list:
+
+
+
+Hash Table:
+Hash Tables are data in noncontiguous blocks of memory. It is an array of linked lists, ordered (indexed?) by the data's hash code. The array is an index of the LLs
+Good at insertion: hash data, then add
+Good at deletion: find element, then delete
+Lookup is better than LLs (usually) because of the hash
+-lookup is still big0(n), but irl faster because of smaller constants, because the LL length is divided by the length of the array. One big LL is split into buckets by the array.
+Not the best choice for sorting, arrays are better
+Can be large in size if desired
+
+Trie ("try", from "reTRIEval"):
+Tries are form of tree, with a root and leaves. A tree is a linked list with a hierarchical structure, where each node points both to the front and the back nodes (or, hierarchically, the child nodes). The center/median node is the root node
+Inserting into a Trie is complex, lots of dynamic memory allocation, which is difficult for humans. But very fast, works in big0(c) though
+- have to encounter null ptr, malloc space, go there, possibly malloc space again, etc.
+Deletion is easy, just navigate to the element to be deleted
+Lookup is fast, is based on the length of your strings, is big0(c)
+Because we insert based on the key, which comes from the data, Tries are already sorted
+Tries are massively large on disk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+speller
+
+get words from dictionary
+put them into a linked list
+count the number of nodes in the list
+initialize an array of length(nodes)
+hash the word in each node
+get the word's index in the array by modding the hash by the length(nodes) 
+put the word in the array at the mod'd index
+
+
+load word from dictionary into buffer
+strcpy() from buffer to node
+	strcpy() strips whitespace
+

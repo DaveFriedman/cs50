@@ -1,0 +1,83 @@
+Fiftyville notes:
+
+select description from crime_scene_reports where day=28 and month=7 and year=2020;
+Vandalism took place at 12:04. No known witnesses.
+Shoplifting took place at 03:01. Two people witnessed the event.
+Theft of the CS50 duck took place at 10:15am at the Chamberlin Street courthouse. Interviews were conducted today with three witnesses who were present at the time — each of their interview transcripts mentions the courthouse.
+Money laundering took place at 20:30. No known witnesses.
+Littering took place at 16:36. No known witnesses.
+
+select name, transcript from interviews where year=2020 and month=7 and day=28;
+Ruth | Sometime within ten minutes of the theft, I saw the thief get into a car in the courthouse parking lot and drive away. If you have security footage from the courthouse parking lot, you might want to look for cars that left the parking lot in that time frame.
+Eugene | I don't know the thief's name, but it was someone I recognized. Earlier this morning, before I arrived at the courthouse, I was walking by the ATM on Fifer Street and saw the thief there withdrawing some money.
+Raymond | As the thief was leaving the courthouse, they called someone who talked to them for less than a minute. In the call, I heard the thief say that they were planning to take the earliest flight out of Fiftyville tomorrow. The thief then asked the person on the other end of the phone to purchase the flight ticket.
+
+Ruth:
+license plates from 7/28/10
+select year, month, day, hour, minute, activity license_plate from courthouse_security_logs where year=2020 and month=7 and day=28;
+
+names of people who drove a car in the courthouse parking lot on 7/28/2020
+select name from people
+inner join courthouse_security_logs on people.license_plate = courthouse_security_logs.license_plate
+where year=2020 and month=7 and day=28;
+
+
+Eugene:
+
+select year, month, day, account_number, atm_location, transaction_type, amount from atm_transactions where year=2020 and month=7 and day=28 and atm_location="Fifer Street";
+
+select name from people
+inner join bank_accounts on people.id = bank_accounts.person_id
+inner join atm_transactions on bank_accounts.account_number = atm_transactions.account_number
+where year=2020 and month=7 and day=28 and atm_location="Fifer Street";
+
+names of people who withdrew money from an atm on fifer street on 7/28/2020
+
+
+Raymond:
+
+Phonecalls on day of theft:
+select year, month, day, duration, caller, receiver from phone_calls where year=2020 and month=7 and day=28;
+
+Callers on day of theft:
+select name from people inner join phone_calls on people.phone_number = phone_calls.caller where year=2020 and month=7 and day=28 and duration < 120;
+
+
+select id, full_name from airports;
+8 | Fiftyville Regional Airport
+
+select year, month, day, hour, destination_airport_id from flights inner join airports on flights.origin_airport_id = airports.id where year=2020 and month=7 and day=29 and origin_airport_id=8;
+year | month | day | hour | destination_airport_id
+2020 | 7 | 29 | 16 | 6
+2020 | 7 | 29 | 12 | 11
+2020 | 7 | 29 | 8 | 4
+2020 | 7 | 29 | 9 | 1
+2020 | 7 | 29 | 15 | 9
+
+select name from people
+inner join phone_calls on people.phone_number = phone_calls.caller
+inner join courthouse_security_logs on people.license_plate = courthouse_security_logs.license_plate
+inner join bank_accounts on people.id = bank_accounts.person_id
+inner join atm_transactions on bank_accounts.account_number = atm_transactions.account_number
+inner join passengers on people.passport_number = passengers.passport_number
+inner join flights on passengers.flight_id = flights.id
+where
+phone_calls.year=2020 and phone_calls.month=7 and phone_calls.day=28 and phone_calls.duration < 60
+and courthouse_security_logs.year=2020 and courthouse_security_logs.month=7 and courthouse_security_logs.day=28 and courthouse_security_logs.hour=10 and courthouse_security_logs.minute > 15 and courthouse_security_logs.activity="exit"
+and atm_transactions.year=2020 and atm_transactions.month=7 and atm_transactions.day=28 and atm_location="Fifer Street" and atm_transactions.transaction_type="withdraw"
+and flights.year=2020 and flights.month=7 and flights.day=29 and flights.hour < 9 and flights.origin_airport_id=8;
+
+
+select name, airports.city from people
+inner join phone_calls on people.phone_number = phone_calls.caller
+inner join courthouse_security_logs on people.license_plate = courthouse_security_logs.license_plate
+inner join bank_accounts on people.id = bank_accounts.person_id
+inner join atm_transactions on bank_accounts.account_number = atm_transactions.account_number
+inner join passengers on people.passport_number = passengers.passport_number
+inner join flights on passengers.flight_id = flights.id
+inner join airports on flights.destination_airport_id=airports.id
+where
+phone_calls.year=2020 and phone_calls.month=7 and phone_calls.day=28 and phone_calls.duration < 60
+and courthouse_security_logs.year=2020 and courthouse_security_logs.month=7 and courthouse_security_logs.day=28 and courthouse_security_logs.hour=10 and courthouse_security_logs.minute > 15 and courthouse_security_logs.minute < 25 and courthouse_security_logs.activity="exit"
+and atm_transactions.year=2020 and atm_transactions.month=7 and atm_transactions.day=28 and atm_location="Fifer Street" and atm_transactions.transaction_type="withdraw"
+and flights.year=2020 and flights.month=7 and flights.day=29 and flights.hour < 9 and flights.origin_airport_id=8;
