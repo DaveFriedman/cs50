@@ -11,3 +11,55 @@ Grover Cleveland
 Free Response:
 Who was the 3rd president of the United States?
 > Thomas Jefferson
+
+
+jQuery
+Selectors: select (aka construct simple queries to get) html elements on a page
+Manipulate these elements with jQuery functions
+- change html
+- change CSS
+- animate
+- do something on some event
+
+Basic selectors:
+Element selector: $("div")
+- select all divs
+Class selector: $(".someClass")
+ID selector: $("#someId") or $("div#someId")
+- select something with that ID
+- can also select any ID that's only a div
+Multiple selectors: $("p, div, li")
+Descendent selector: $(".someClass a")
+Not selector: $("div"):not(".someClass")
+- Select all divs that do not have some specific .someClass
+
+modify CSS:
+ex:
+    $("body").css("color", "red")
+
+Creating events:
+Show or hide a box on a page. First, create the html:
+
+    <div class="slide")>
+        <div id="boxId"></div>
+        <button id="boxButtonId">Hide/Show the box</button>
+    </div>
+
+then, define a function hideTheBox, that toggles (shows/hides) the box, and use 
+a jQuery function .click() to call the function on a click:
+
+    <script type="text"/javascript">
+        function hideTheBox() {
+            $("#boxId").fadeToggle();
+        }
+
+        $("boxButtonId).click(hideTheBox);
+    </script>
+
+alternatively, simplify the above by using an anonymous function, like so:
+
+    <script type="text/javascript">
+    $("#boxButtonId").click(function () {
+        $("#boxId").fadeToggle();
+    });
+
