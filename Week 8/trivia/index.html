@@ -2,32 +2,10 @@
 
 <html lang="en">
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
         <link href="styles.css" rel="stylesheet">
         <title>Trivia!</title>
-
-        <script>
-            // let q1 = document.querySelector(".button");
-            // function q1(answer) {
-            //     if (answer === 'ah') {
-            //         q1.style.button.backgroundColor = 'red';
-            //     }
-            // }
-            let elem1  = document.getElementsByClassName("jumbotron");
-            
-            function q1check(id) {
-                elem1.style.backgroundColor = "Blue";
-                let elem  = document.getElementsByClassName('container');
-                if (id === 'gw') {
-                    elem.style.backgroundColor = "Red";
-                }
-                else {
-                    elem.style.backgroundColor = "Green";
-                }
-            }
-
-
-        </script>
     </head>
 
     <body>
@@ -37,16 +15,36 @@
 
         <div class="container">
 
-            <div class="q1">
+            <div class="section1">
                 <h2>Part 1: Multiple Choice </h2>
                 <hr>
                 <h3>Who was NOT a president of the United States?</h3>
-                <input class=q1b value="George Washington" onclick="q1check('gw')" type='button'>
 
-                <!-- <button onclick="q1('gw')" type="button">George Washington</button>
-                <button onclick="q1('ah')" type="button">Alexander Hamilton</button>
-                <button onclick="q1('jg')" type="button">James Garfield</button>
-                <button onclick="q1('gc')" type="button">Grover Cleveland</button> -->
+                <button id="gw">George Washington</button>
+                <button id="ah">Alexander Hamilton</button>
+                <button id="jg">James Garfield</button>
+                <button id="gc">Grover Cleveland</button>
+
+                <script>
+                     $("button#gw").click( function () {
+                        $(this).css("background-color", "red");
+                        $("#feedback1").html("Incorrect");
+                    })
+                    $("button#ah").click( function () {
+                        $(this).css("background-color", "green");
+                        $("#feedback1").html("Correct!");
+
+                    })
+                    $("button#jg").click( function () {
+                        $(this).css("background-color", "red");
+                        $("#feedback1").html("Incorrect");
+                    })
+                    $("button#gc").click( function () {
+                        $(this).css("background-color", "red");
+                        $("#feedback1").html("Incorrect");
+                    })
+                   
+                </script>
 
                 <p id="feedback1"></p>
 
@@ -55,11 +53,26 @@
             <div class="section2">
                 <h2>Part 2: Free Response</h2>
                 <hr>
+            
                 <h3>Who was the third president of the United States?</h3>
-                <form action="">
-                    <input type="test" placeholder="Answer">
-                    <button onclick="q2()" type="input" value="Submit" />
-                </form>
+                <input id="q2" type="text" placeholder="Answer"></input>
+                <button id="check">Check</button>
+            
+                <script>
+                    $("button#check").click( function () {
+                        $(this).text("Submitted!");
+                        let answer = $('#q2').val();
+                        if (answer === "Thomas Jefferson") {
+                            $("#feedback2").html("Correct!");
+                            $("#q2").css("background-color", "green");
+                        }
+                        else {
+                            $("#feedback2").html("Incorrect. <br> The answer is Thomas Jefferson.");
+                            $("#q2").css("background-color", "red");
+
+                        }
+                    })
+                </script>
 
                 <p id="feedback2"></p>
             </div>
