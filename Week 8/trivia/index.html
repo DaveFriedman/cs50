@@ -2,10 +2,47 @@
 
 <html lang="en">
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
         <link href="styles.css" rel="stylesheet">
+
         <title>Trivia!</title>
+
+        <script>
+            $(document).ready(function() {
+
+                $("button#gw").click( function () {
+                    $(this).css("background-color", "red");
+                    $("#feedback1").html("Incorrect");
+                });
+                $("button#ah").click( function () {
+                    $(this).css("background-color", "green");
+                    $("#feedback1").html("Correct!");
+                });
+                $("button#jg").click( function () {
+                    $(this).css("background-color", "red");
+                    $("#feedback1").html("Incorrect");
+                });
+                $("button#gc").click( function () {
+                    $(this).css("background-color", "red");
+                    $("#feedback1").html("Incorrect");
+                });
+
+                $("button#check").click( function () {
+                    $(this).text("Submitted!");
+                    let answer = $('#q2').val();
+                    if (answer === "Thomas Jefferson") {
+                        $("#feedback2").html("Correct!");
+                        $("#q2").css("background-color", "green");
+                    }
+                    else {
+                        $("#feedback2").html("Incorrect. <br> The answer is Thomas Jefferson.");
+                        $("#q2").css("background-color", "red");
+                    }
+                }); 
+            });
+        </script>
+
     </head>
 
     <body>
@@ -25,28 +62,6 @@
                 <button id="jg">James Garfield</button>
                 <button id="gc">Grover Cleveland</button>
 
-                <script>
-                     /* global $ */
-
-                     $("button#gw").click( function () {
-                        $(this).css("background-color", "red");
-                        $("#feedback1").html("Incorrect");
-                    });
-                    $("button#ah").click( function () {
-                        $(this).css("background-color", "green");
-                        $("#feedback1").html("Correct!");
-                    });
-                    $("button#jg").click( function () {
-                        $(this).css("background-color", "red");
-                        $("#feedback1").html("Incorrect");
-                    });
-                    $("button#gc").click( function () {
-                        $(this).css("background-color", "red");
-                        $("#feedback1").html("Incorrect");
-                    });
-
-                </script>
-
                 <p id="feedback1"></p>
 
             </div>
@@ -58,23 +73,6 @@
                 <h3>Who was the third president of the United States?</h3>
                 <input id="q2" type="text" placeholder="Answer"></input>
                 <button id="check">Check</button>
-
-                <script>
-                    /* global $ */
-
-                    $("button#check").click( function () {
-                        $(this).text("Submitted!");
-                        let answer = $('#q2').val();
-                        if (answer === "Thomas Jefferson") {
-                            $("#feedback2").html("Correct!");
-                            $("#q2").css("background-color", "green");
-                        }
-                        else {
-                            $("#feedback2").html("Incorrect. <br> The answer is Thomas Jefferson.");
-                            $("#q2").css("background-color", "red");
-                        }
-                    });
-                </script>
 
                 <p id="feedback2"></p>
             </div>
