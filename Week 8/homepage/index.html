@@ -1,31 +1,46 @@
 <!DOCTYPE html>
-
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-        <link href="styles.css" rel="stylesheet">
-        <title>My Webpage</title>
-    </head>
-    <body>
-        <h1>Hello, this is my homepage!</h1>
+<head>
+    <meta charset="UTF-8"/>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="styles.css">
+    <title>My Homepage</title>
+</head>
 
-        <ul>
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./projects.html">Projects</a></li>
-            <li><a href="./ideas.html">Ideas</a></li>
-            <li><a href="./contact.html">Contact</a></li>
-        </ul>
+<body>
+    <div class="page">
+
+        <div class="header">
+            <h1>Hello, this is my homepage!</h1>
+        </div>
+
+        <div class="nav">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./projects.html">Projects</a></li>
+                <li><a href="./ideas.html">Ideas</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </div>
         
-        <h2>Currently, I'm working on a few things:</h2>
-        <ol>
-            <li><a href="https://cs50.harvard.edu/x/">Harvard's CS50 via EdX</a></li>
-            <li><a href="https://adventofcode.com/">Advent of Code 2021</a></li>
-            <li><a href="https://www.theodinproject.com/">Javascript, at The Odin Project</a></li>
-            <li><a href="https://linuxupskillchallenge.org/">The Linux Up-Skill Challange</a></li>
-        </ol>
+        <div class="main">
+            <h2>I'm currently working on:</h2>
+            <ol>
+                <li><a href="https://cs50.harvard.edu/x/">Harvard's CS50 via EdX</a></li>
+                <li><a href="https://adventofcode.com/">Advent of Code 2021</a></li>
+                <li><a href="https://www.theodinproject.com/">Javascript, at The Odin Project</a></li>
+                <li><a href="https://linuxupskillchallenge.org/">The Linux Up-Skill Challange</a></li>
+            </ol>
+        </div>
+        
+        <div class="footer">
+            <p>By Dave Friedman, for cs50x 2021</p>
+            <!-- <p>This homepage will eventually be deprecated and replaced by <br><a href="https://DaveFriedman.github.io">https://DaveFriedman.github.io</a></p> -->
+        </div>
 
-        This homepage will eventually be deprecated and replaced by <a href="https://DaveFriedman.github.io">https://DaveFriedman.github.io</a>
-    </body>
+    </div>
+</body>
 </html>
