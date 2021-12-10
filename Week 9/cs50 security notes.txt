@@ -1,0 +1,77 @@
+Intro
+How to keep devices secure
+Multi-layered security
+    deeper you get in, easier it is to get caught
+No such thing as perfect security
+    Be aware of your threat model - what are you actually afraid of?
+    Security through comparison: just be more secure than your neighbor
+
+
+Security
+What does it mean to be secure?
+    Controlled access
+    "statistically safe"
+
+
+Passwords
+Measuring password security:
+    most common pws: #1: 123456, #2: 123456789, #3: qwerty, #4: password
+Use better pws for more important accounts
+
+
+Brute-Force attacks:
+Progressive, repeated guessing, to try all possible pws
+4-digit pw: 10^4 combinations = 10k 
+
+01crack.py:
+from string import digits # get all digits, 0-9
+from itertools import product # get a fn that returns the permutation of input
+
+# for 4 copies of each digit, print every combo of those digits
+for passcode in product(digits, repeat=4): 
+    print("".join(passcode))
+
+4-letter pw: (26*2 = 52)^4 combinations = 7,311,616
+
+# for 4 copies of each letter, print every combo of those letters
+for passcode in product(ascii_letters, repeat=4): 
+    print("".join(passcode))
+
+4-character pw: (94)^4 combinations = 78,074,896
+
+# for 4 copies of each character, print every combo of those characters
+for passcode in product(ascii_letters+digits+punctuation, repeat=4): 
+    print("".join(passcode))
+
+8-character pw: (94)^8 combinations = 6,095,689,385,410,816 (~6 quadrillion)
+10-char pw: ~quintillions
+Yet, it's a problem if we forget our passwords or write them down.
+Or to have only one password for all accounts
+
+
+2 Factor Authentication
+Other security options: 
+    Rate-limiting
+        If 1 try per minute, it takes 10k minutes (6.94 days) to try all combos
+    Biometrics
+        Different tradeoffs - PWs can be accessed by twins, etc.
+    2fa (aka 2-step auth)
+        Typically requires physical auth of some kind
+        2fa codes typically expire after 1 use or x minutes
+
+
+Password Managers
+Software to manage passwords
+secured behind one master password
+Tradeoffs: 
+    Your security has 1 critical point, the pw manager
+
+
+Encryption
+https:
+    The "s" means secure against main-in-the-middle attacks
+    https is not 100% but raises the bar
+End-To-End Encryption:
+    When using some service with a friend, secure the data you send to your 
+    friend from all other parties, including the service you're using
+    E2E is under attack by authorities because it prevents backdoors
