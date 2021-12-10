@@ -53,7 +53,9 @@ h2 {
     margin-top: 10px;
 }
 .form-row label {
-    margin-bottom: 3px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
 }
 .form-row input,
 .form-row textarea {
@@ -66,7 +68,7 @@ h2 {
     min-height: 200px;
     resize: none;
 }
-.form-row button {
+.form-row input[type="submit"] {
     font-size: 20px;
     font-weight: bold;
     margin-top: 20px;
