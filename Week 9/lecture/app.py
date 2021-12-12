@@ -8,6 +8,11 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/greet")
+@app.route("/greet", methods=["GET", "POST"])
 def greet():
-    return render_template("greet.html", name=request.form.get("name", "World"))
+    # return render_template("greet.html", name=request.args.get("name", "World"))
+
+    # the form in index.html will always return something, even just an empty  
+    # string, so the default param "World" in request.form.get() is never used.
+    # This is solved by using OR, which sees an empty string as False 
+    return render_template("greet.html", name=request.form.get("name") or "World")
