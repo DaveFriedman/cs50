@@ -1,1 +1,3 @@
-/.vscode
+/.vscode/
+/lecture/
+/__pycache__/
