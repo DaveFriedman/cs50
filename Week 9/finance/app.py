@@ -38,6 +38,9 @@ Session(app)
 db = SQL("sqlite:///finance.db")
 
 # Make sure API key is set
+with open('iextoken.txt') as f:
+    key = f.read()
+os.environ["API_KEY"] = key
 if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
 
