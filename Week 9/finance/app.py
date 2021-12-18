@@ -45,11 +45,21 @@ if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
-    """Show portfolio of stocks"""
-    return apology("TODO")
+
+    if request.method == "GET":
+
+        # Ensure cart exists
+        if "user_id" not in session:
+            session["user_id"] = []
+
+        user = db.execute("SELECT username, cash FROM users WHERE id IN (?)", session["user_id"])
+
+        return render_template("index.html", user=user[0]["username"], cash=usd(user[0]["cash"]))
+    else: 
+        return render_template("/login.html")
 
 
 @app.route("/buy", methods=["GET", "POST"])

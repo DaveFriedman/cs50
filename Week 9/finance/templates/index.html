@@ -1,0 +1,19 @@
+r{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <h1>Hi {{ user }}</h1>
+    <h2>Trade History</h2>
+    <ol>
+        {% for stock in portfolio %}
+            <li>{{ stock.ticker }}</li>
+            <li>{{ stock.price }}</li>
+            <li>{{ stock.shares }}</li>
+        {% endfor %}
+    </ol>
+    <h3>Cash balance: {{ cash }}</h3>
+
+{% endblock %}
