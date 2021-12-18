@@ -1,1 +1,7 @@
 Flask & Web Programming
+
+
+Sessions:
+
+Server sends this command: Set-Cookie: session=<value>
+Browsers send that value back to every subsequent page you visit on that server
