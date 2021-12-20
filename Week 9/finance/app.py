@@ -6,6 +6,8 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
+import urllib.parse, urllib.request
+import json
 
 from helpers import apology, login_required, lookup, usd
 
@@ -38,6 +40,7 @@ Session(app)
 db = SQL("sqlite:///finance.db")
 
 # Make sure API key is set
+# with open('iexsandboxtoken.txt') as f:
 with open('iextoken.txt') as f:
     key = f.read()
 os.environ["API_KEY"] = key
@@ -51,15 +54,17 @@ def index():
 
     if request.method == "GET":
 
-        # Ensure cart exists
         if "user_id" not in session:
             session["user_id"] = []
 
         user = db.execute("SELECT username, cash FROM users WHERE id IN (?)", session["user_id"])
 
+        """TODO: create new db + schema for trades. Display portfolio on login"""
+
         return render_template("index.html", user=user[0]["username"], cash=usd(user[0]["cash"]))
+    
     else: 
-        return render_template("/login.html")
+        return render_template("login.html")
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -129,7 +134,19 @@ def logout():
 @login_required
 def quote():
     """Get stock quote."""
-    return apology("TODO")
+
+    if request.method == "POST":
+        symbol = request.form.get("symbol")
+        quote = lookup(symbol)
+
+        if quote:
+            return render_template("quoteshow.html", name=quote["name"], symbol=quote["symbol"], price=quote["price"])       
+        else:
+            return render_template("quoteshow.html")
+            
+    else:
+        return render_template("quoteget.html")
+
 
 
 @app.route("/register", methods=["GET", "POST"])

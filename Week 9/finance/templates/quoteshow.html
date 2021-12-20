@@ -1,0 +1,17 @@
+r{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+    {% if symbol %}
+        <h3>Company name: {{ name }}</h3>
+        <h3>Company symbol: {{ symbol }}</h3>
+        <h3>Price per share: {{ price }}</h3>
+    {% else %}
+        <h3>Error: bad symbol</h3>
+    {% endif %}
+
+{% endblock %}
