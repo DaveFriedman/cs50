@@ -6,8 +6,6 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
-import urllib.parse, urllib.request
-import json
 
 from helpers import apology, login_required, lookup, usd
 
@@ -140,10 +138,11 @@ def quote():
         quote = lookup(symbol)
 
         if quote:
-            return render_template("quoteshow.html", name=quote["name"], symbol=quote["symbol"], price=quote["price"])       
+            return render_template("quoteshow.html", name=quote["name"], \
+                           symbol=quote["symbol"], price=usd(quote["price"]))       
         else:
             return render_template("quoteshow.html")
-            
+
     else:
         return render_template("quoteget.html")
 
