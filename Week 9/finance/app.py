@@ -1,3 +1,11 @@
+"""TODO:
+- index, index.html
+- history.html
+- input validation
+- error messages (maybe?)
+- line and style formatting
+"""
+
 import os, sys
 
 from cs50 import SQL
@@ -16,7 +24,6 @@ app = Flask(__name__)
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-
 
 # Ensure responses aren't cached
 @app.after_request
@@ -119,6 +126,7 @@ def buy():
         cash = user[0]["cash"]
         return render_template("buy.html", cash=usd(cash))
 
+
 @app.route("/history")
 @login_required
 def history():
@@ -196,7 +204,6 @@ def quote():
         return render_template("quoteget.html")
 
 
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
@@ -261,29 +268,29 @@ def sell():
         quote = lookup(symbol)
         if not quote:
             return apology("No such stock symbol", 404)
+        else:
+            companyName, symbol = quote["name"], quote["symbol"]
+            price = quote["price"]
 
-        companyName, symbol = quote["name"], quote["symbol"]
-        price = quote["price"]
+            user = db.execute("SELECT cash FROM users WHERE id = ?",
+                                                            session["user_id"])
+            cash = user[0]["cash"]
+            revenue = round(shares * price, 2)
+            cash += revenue
 
-        user = db.execute("SELECT cash FROM users WHERE id = ?",
-                                                        session["user_id"])
-        cash = user[0]["cash"]
-        revenue = round(shares * price, 2)
-        cash += revenue
-
-        db.execute("UPDATE users SET cash = ? where id = ?",
-                                                cash, session["user_id"])
-        db.execute("INSERT INTO transactions (userid, symbol, companyName, \
-                                            price, shares, cost, timestamp) \
-                            VALUES(?, ?, ?, ?, ?, ?, ?)",
-                                session["user_id"],
-                                symbol,
-                                companyName,
-                                price,
-                                -shares,
-                                -revenue,
-                                datetime.now())
-        return redirect("/")
+            db.execute("UPDATE users SET cash = ? where id = ?",
+                                                    cash, session["user_id"])
+            db.execute("INSERT INTO transactions (userid, symbol, companyName, \
+                                                price, shares, cost, timestamp) \
+                                VALUES(?, ?, ?, ?, ?, ?, ?)",
+                                    session["user_id"],
+                                    symbol,
+                                    companyName,
+                                    price,
+                                    -shares,
+                                    -revenue,
+                                    datetime.now())
+            return redirect("/")
         
     else:
         return render_template("sell.html")
