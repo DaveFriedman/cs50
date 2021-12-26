@@ -7,13 +7,31 @@
 {% block main %}
 
     <h1>Trade History</h1>
-    <ol>
-        {% for trade in trades %}
-            <li>{{ stock.ticker }}</li>
-            <li>{{ stock.price }}</li>
-            <li>{{ stock.shares }}</li>
-        {% endfor %}
-    </ol>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Company</th>
+                <th>Price</th>
+                <th>Shares</th>
+                <th>Cost</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for trade in trades %}
+            <tr>
+                <td>{{ trades["symbol"] }}</td>
+                <td>{{ trades["companyName"] }}</td>
+                <td>{{ trades["price"] }}</td>
+                <td>{{ trades["shares"] }}</td>
+                <td>{{ trades["cost"] }}</td>
+                <td>{{ trades["timestamp"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    <table>
 
 
 {% endblock %}
