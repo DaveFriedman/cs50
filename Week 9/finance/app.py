@@ -69,14 +69,18 @@ def index():
         user = db.execute("SELECT username, cash FROM users WHERE id = ?", session["user_id"])
         name, cash = user[0]["username"], usd(user[0]["cash"])
 
-    # """TODO: create new db for trades. Display portfolio on login"""
-    #   portfolio=db.execute("SELECT symbol, companyName, sum(shares), sum(cost) 
-    #                           FROM transactions 
-    #                           WHERE userid IN ? 
-    #                           GROUP BY symbol 
-    #                           HAVING shares > 0", session["user_id"])
-
-        return render_template("index.html", user=name, cash=cash)
+        # """TODO: create new db for trades. Display portfolio on login"""
+        portfolio = db.execute("SELECT symbol, companyName, sum(shares) FROM transactions WHERE userid IN ? GROUP BY symbol HAVING shares > 0", session["user_id"])
+        
+        balance = cash
+        for stock in portfolio[0]:
+            symbol = stock["symbol"]
+            current = lookup(symbol)
+            stock["price"] = current["price"]
+            stock["total"] = stock["price"] * stock["shares"]
+            balance += stock["total"]
+    
+        return render_template("index.html", user=name, cash=cash, portfolio=portfolio[0])
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -96,7 +100,7 @@ def buy():
         companyName, symbol = quote["name"], quote["symbol"]
         price = quote["price"]
 
-        user = db.execute("SELECT cash FROM users WHERE id = ?", \
+        user = db.execute("SELECT cash FROM users WHERE id = ?", 
                                                         session["user_id"])
         cash = user[0]["cash"]
 
@@ -131,8 +135,13 @@ def buy():
 @login_required
 def history():
     """Show history of transactions"""
-    return apology("TODO")
+    # <!-- <td>{{ "{:.2f}".format(trades["price"]) }}</td> -->
+    # <!-- <td>{{ "{:.2f}".format(trades["cost"]) }}</td> -->
 
+    trades = db.execute("SELECT symbol, companyName, price, shares, cost, timestamp \
+                         FROM transactions WHERE id =?", session["user_id"])
+
+    return render_template("history.html", trades=trades[0] )
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -153,11 +162,11 @@ def login():
             return apology("must provide password", 403)
 
         # Query database for username
-        rows = db.execute("SELECT * FROM users WHERE username = ?", \
+        rows = db.execute("SELECT * FROM users WHERE username = ?",
                                         request.form.get("username"))
 
         # Ensure username exists and password is correct
-        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], \
+        if len(rows) != 1 or not check_password_hash(rows[0]["hash"],
                                         request.form.get("password")):
             return apology("invalid username and/or password", 403)
 

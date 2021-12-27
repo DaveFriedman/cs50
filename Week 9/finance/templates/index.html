@@ -5,15 +5,33 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Hi {{ user }}</h1>
-    <h2>Trade History</h2>
-    <ol>
-        {% for stock in portfolio %}
-            <li>{{ stock.ticker }}</li>
-            <li>{{ stock.price }}</li>
-            <li>{{ stock.shares }}</li>
-        {% endfor %}
-    </ol>
-    <h3>Cash balance: {{ cash }}</h3>
+
+<h1>{{ user}}'s Portfolio:</h1>
+<h3>Cash balance: {{ cash }}</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Company</th>
+                <th>Current Price</th>
+                <th>Shares</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for stock in portfolio %}
+            <tr>
+                <td>{{ stock["symbol"] }}</td>
+                <td>{{ stock["companyName"] }}</td>
+                <td>{{ stock["price"] }}</td>
+                <td>{{ stock["shares"] }}</td>
+                <td>{{ stock["cost"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    <table>
+        
 
 {% endblock %}

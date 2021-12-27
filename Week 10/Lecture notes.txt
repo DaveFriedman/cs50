@@ -1,0 +1,137 @@
+# Week 10 - Ethics
+
+## Thanks
+- Approx 19x7=133 people are on the cs50 team
+- Bloopers
+
+
+## Looking Back
+- Went from managing spaces on screen with Mario to Finance, a full stack webapp
+- key goal: computational thinking, comp-sci's version of critical thinking
+
+How to evaulate the quality of your approach, 3 axes:
+- Correctness: the solution has to work
+- Design: the solution should be fast, efficient, and maintainable
+- Style: good aethetics help others understand you
+
+Abstraction: 
+ - Taking complicated ideas and simplifying them so you can focus on the idea's 
+    use as a building block, without worrying about the idea's implementation
+
+Precision: 
+- Covering and communicating the entire surface area of an idea, avoiding edge
+    cases and unexpected behavior
+
+Abstraction and Precision are sometimes at odds:
+- Abstraction is a method to avoid some detail
+- Precision improves with attention to detail
+
+
+## Drawing Demos
+1 student verbally describes a picture (shared only to him) to the audience
+The audience tries to draw the description.
+The picture is a 3-d cube.
+The description was, roughly, "draw a regular hexagon with points facing up and 
+down. Then from the center, draw lines from the center to the verteces."
+
+The class is trying to describe a snowman to Prof Malan (he hasn't seen the pic)
+and get him to draw it, instructing him piece by piece. 
+
+
+## Ethics
+Meica Magnani & Susan Kennedy
+- philosophy postdocs in Harvard's Embedded Ethics program
+
+Embedded Ethics Program: an interdisciplinary team of philosophers and computer 
+    scientists working to integrate ethics into the CS curriculum
+    Approach is to embed tools of ethical reasoning into CS courses.
+    Ethical decisions: decisions that have social, political, or human impact
+
+Technology has a lot of power, by extension so do those who design technology.
+Social media platforms and fake news
+Technology (social media platforms) has revolutionized how we get information
+
+Before the internet, news came largely from major broadcast and print media.
+They filtered information through a pretty narrow lens
+
+Tools for thinking through content regulation:
+- Understanding the problem
+- Diagnosing the sources of the problem
+- Brainstorming solutions
+
+Thinking clear about Democracy:
+- What is democracy?
+    An idea of what political society should be, that has 3 elements:
+    1) The political culture views individuals as free and equal and committed 
+        to arriving at (via discourse) principles that let them work together, 
+        even if they have different interests, identities, etc.
+    2) Regular elections, rights of participation, and associative and 
+        expressive rights that make participation both informed and effective
+    3) Deliberative democracy, political discussion should appeal to reasons 
+        that are suitable for cooperation (i.e.: universal reasons).
+    Democracy is when we govern ourselves by collective decision-making
+- What conditions support democracy?
+- Are those conditions threatened?
+
+
+## Looking Forward
+- This might be the only comp sci course for many cs50 students
+- The class may help students ask better questions, esp. technical questions
+- Learn how to search for and find answers to technical questions
+- Learning to read documentation
+- Teaching ourselves how to learn new languages
+
+Industry standard tools:
+- WSL (Windows), Xcode (Mac)
+- Git https://youtu.be/MJUJ4wbFm_A
+- VS Code
+- Static pages: Github pages, Netlify
+- Dynamic pages: Heroku, AWS, Azure, GCP
+- https://cloud.google.com/edu/students
+- Staying current: Stackoverflow, Hackernews, Serverfault.com, Techcrunch
+
+
+## Quiz Show
+20 questions:
+1) What are the steps for compiling source code to machine code?
+- Preprocessing, compiling, assembling, linking
+2) What is the runtime of binary search?
+- O(log n)
+3) Which animal was first mentioned in a cs50 lecture?
+- Cat
+4) Every time you malloc memory, you should also...
+- Dealloc / free
+5) What is a race condition?
+- When 2 things happen at the same time and produce an unexpected result
+6) Does zooming in on a photo let you "enhance" it to generate more detail?
+- No, a photo only has a certain amount of detail (not counting ML)
+7) Which is NOT a characteristic of a good hash function?
+- Randomness (vs: Deterministic Output, Uniform Distribution, Efficiency)
+8) What does FIFO stand for?
+- First In, First Out
+9) Which of the following would represent pink in RGB values?
+- #ffd0e0 (vs: #0054e7, #9012a2, #e5d600)
+10) In C, what code will allocate enough memory for a copy of string s?
+- malloc(strlen(s)+1)
+11) How should you organize your clothes to be cool?
+- queue (vs: stack, dictionary, binary tree)
+12) What is a segmentation fault?
+- When a program tries to access memory that it shouldn't
+13) What type of overflow can result from recursion without a base case?
+- Stack overflow
+14) In the town of Fiftyville, which 3 people witnessed the rubber duck robbery?
+- Ruth, Eugene, and Raymond
+15) What command-line program checks your code for memory leaks?
+- valgrind (vs: clang, mkdir, make)
+16) Which exists in C, but not in Python?
+- do-while loops (vs: Boolean expressions, recursion, floating-point numbers)
+17) What HTTP request method should be used when sending private information?
+- POST
+18) What data structure has constant-time lookup for words in a dictionary?
+- trie (vs: linked list, binary search tree, array)
+19) What is a cookie?
+- Data used by to identify your computer to websites (both of the above)
+20) What's your comfort level now?
+- I'm among those more comfortable :)
+
+## This was cs50
