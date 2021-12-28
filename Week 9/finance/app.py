@@ -67,20 +67,23 @@ def index():
             session["user_id"] = []
 
         user = db.execute("SELECT username, cash FROM users WHERE id = ?", session["user_id"])
-        name, cash = user[0]["username"], usd(user[0]["cash"])
+        name, cash = user[0]["username"], user[0]["cash"]
 
         # """TODO: create new db for trades. Display portfolio on login"""
-        portfolio = db.execute("SELECT symbol, companyName, sum(shares) FROM transactions WHERE userid IN ? GROUP BY symbol HAVING shares > 0", session["user_id"])
+        portfolio = db.execute("SELECT symbol, companyName, sum(shares) AS totalshares FROM transactions WHERE userid = ? GROUP BY symbol HAVING shares > 0", session["user_id"])
         
         balance = cash
-        for stock in portfolio[0]:
+        for stock in portfolio:
             symbol = stock["symbol"]
             current = lookup(symbol)
-            stock["price"] = current["price"]
-            stock["total"] = stock["price"] * stock["shares"]
-            balance += stock["total"]
+            stock["value"] = int(current["price"]) * stock["totalshares"]
+            balance += stock["value"]
+            stock["value"] = usd(stock["value"])
+            stock["price"] = usd(current["price"])
+        
+        cash, balance = usd(cash), usd(balance)
     
-        return render_template("index.html", user=name, cash=cash, portfolio=portfolio[0])
+        return render_template("index.html", user=name, cash=cash, balance=balance, portfolio=portfolio)
 
 
 @app.route("/buy", methods=["GET", "POST"])

@@ -6,10 +6,9 @@
 
 {% block main %}
 
-<h1>{{ user}}'s Portfolio:</h1>
-<h3>Cash balance: {{ cash }}</h3>
+<h1>{{ user }}'s Portfolio</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Symbol</th>
@@ -23,13 +22,27 @@
         <tbody>
             {% for stock in portfolio %}
             <tr>
-                <td>{{ stock["symbol"] }}</td>
-                <td>{{ stock["companyName"] }}</td>
-                <td>{{ stock["price"] }}</td>
-                <td>{{ stock["shares"] }}</td>
-                <td>{{ stock["cost"] }}</td>
+                <td>{{ stock.symbol }}</td>
+                <td>{{ stock.companyName }}</td>
+                <td>{{ stock.price }}</td>
+                <td>{{ stock.totalshares }}</td>
+                <td>{{ stock.value }}</td>
             </tr>
             {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Cash</td>
+                <td>{{ cash }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>TOTAL</td>
+                <td>{{ balance }}</td>
+            </tr>
         </tbody>
     <table>
         
