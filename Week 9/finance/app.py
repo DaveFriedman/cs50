@@ -135,13 +135,13 @@ def buy():
 @login_required
 def history():
     """Show history of transactions"""
-    # <!-- <td>{{ "{:.2f}".format(trades["price"]) }}</td> -->
-    # <!-- <td>{{ "{:.2f}".format(trades["cost"]) }}</td> -->
-
     trades = db.execute("SELECT symbol, companyName, price, shares, cost, timestamp \
-                         FROM transactions WHERE id =?", session["user_id"])
+                         FROM transactions WHERE userid = ?", session["user_id"])
+    for trade in trades:
+        trade["price"] = usd(trade["price"])
+        trade["cost"] = usd(trade["cost"])
 
-    return render_template("history.html", trades=trades[0] )
+    return render_template("history.html", trades=trades)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

@@ -7,7 +7,12 @@
 {% block main %}
 
     <h1>Trade History</h1>
-    <table class="table">
+    {% if not trades %}
+        <h3>No trades yet!</h3>
+    {% else %}
+    <table class="table table-striped">
+        
+        
         <thead>
             <tr>
                 <th>Symbol</th>
@@ -22,16 +27,17 @@
         <tbody>
             {% for trade in trades %}
             <tr>
-                <td>{{ trades["symbol"] }}</td>
-                <td>{{ trades["companyName"] }}</td>
-                <td>{{ trades["price"] }}</td>
-                <td>{{ trades["shares"] }}</td>
-                <td>{{ trades["cost"] }}</td>
-                <td>{{ trades["timestamp"] }}</td>
+                <td>{{ trade.symbol }}</td>
+                <td>{{ trade.companyName }}</td>
+                <td>{{ trade.price }}</td>
+                <td>{{ trade.shares }}</td>
+                <td>{{ trade.cost }}</td>
+                <td>{{ trade.timestamp }}</td>
             </tr>
             {% endfor %}
         </tbody>
     <table>
+    {% endif %}
 
 
 {% endblock %}
