@@ -8,8 +8,11 @@
 
     <form action="/sell" method="post">
         <div class="form-group">
-            <input autofocus class="form-control" name="symbol" 
-                   placeholder="stock symbol" type="text" required>
+            <select name="symbol" placeholder="Stock symbol">
+                {% for stock in portfolio %}
+                    <option value="{{ stock.symbol }}">{{ stock.symbol }}</option>
+                {% endfor %}
+            </select>
             <input class="form-control" name="shares" placeholder="# shares" 
                    type="number" required>
         </div>
