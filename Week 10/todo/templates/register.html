@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" 
+                   name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="password" name="password" 
+                   placeholder="Password" type="password" onkeyup="check();">
+            <br>
+            <input class="form-control" id="passwordconfirm" 
+                   name="passwordconfirm" placeholder="Confirm Password" 
+                   type="password" onkeyup="check();">
+            <br><span id="message"></span>
+        </div>
+        <button class="btn btn-primary" type="submit" id="submit" 
+                name="submit">Register</button>
+    </form>
+    <script>
+        function check() {
+            error = document.getElementById("message");
+            if (document.getElementById("password").value ==
+                    document.getElementById("passwordconfirm").value) {
+                document.getElementById("submit").disabled = false;
+                error.innerHTML = "";
+            } else {
+                document.getElementById("submit").disabled = true;
+                error.innerHTML = "Passwords don't match";
+            }
+        }
+    </script>
+    
+{% endblock %}
