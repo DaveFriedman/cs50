@@ -30,7 +30,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-db = sqlite3.connect("todo.db")
+db = sqlite3.connect("todo.db", check_same_thread=False)
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -44,10 +44,13 @@ def index():
         if "user_id" not in session:
             session["user_id"] = []
         
-        user = db.execute(
-            "SELECT username FROM users WHERE id = ?", session["user_id"])
+        with db:
+                c = db.cursor()
+                c.execute(
+                    "SELECT username FROM users WHERE id = ?", (session["user_id"],))
+                user = c.fetchone()    
 
-        return render_template("index.html", user=user)
+        return render_template("index.html", user=user.fetchone())
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -75,7 +78,7 @@ def login():
             flash("no password", "error")
 
         auth = db.execute(
-            "SELECT * FROM users WHERE username = ?", username)
+            "SELECT * FROM users WHERE username = ?", (username,))
         
         if len(auth) != 1 or not check_password_hash(auth[0]["hash"], password):
             flash("invalid username and/or password", "error")
@@ -136,36 +139,42 @@ def register():
         else:
             flash("no email", "error")
 
-        usercheck = db.execute(
-            "SELECT * FROM users WHERE username = ?", username)
-        
-        if usercheck:
-            if username in usercheck[0]["username"]:
-                flash("username taken", "error")
-        else:
-            db.executemany(
-                "INSERT INTO user (username, hash, email, joined) \
-                VALUES(?, ?, ?, ?)",
-                username, hash, email, datetime.now())
+        with db:
+            c = db.cursor()
+            c.execute(
+                "SELECT * FROM users WHERE username = ?", (username,))
+            usercheck = c.fetchone()
+        try: 
+            usercheck[0]
+            # if username in usercheck["username"]:
+            flash("username taken", "error")
+        except:
+            with db:
+                c = db.cursor()
+                c.execute(
+                    "INSERT INTO users (username, hash, email, timestamp) \
+                    VALUES(?, ?, ?, ?)",
+                    (username, hash, email, datetime.now(),),)
+                db.commit()
 
-            thisuser = db.execute(
-                "SELECT * FROM users WHERE username = ?", username)
+                thisuser = c.execute(
+                    "SELECT id FROM users WHERE username = ?", (username,))
             
-            session["user_id"] = thisuser[0]["id"]
+            session["user_id"] = thisuser.fetchone()
 
-            return redirect("/")
+        return redirect("/")
 
     else:
         return render_template("register.html")
 
 
-def errorhandler(e):
-    """Handle error"""
-    if not isinstance(e, HTTPException):
-        e = InternalServerError()
-    return render_template(e.name, e.code)
+# def errorhandler(e):
+#     """Handle error"""
+#     if not isinstance(e, HTTPException):
+#         e = InternalServerError()
+#     return render_template(e.name, e.code)
 
 
-# Listen for errors
-for code in default_exceptions:
-    app.errorhandler(code)(errorhandler)
+# # Listen for errors
+# for code in default_exceptions:
+#     app.errorhandler(code)(errorhandler)
