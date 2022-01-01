@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Your Account
+{% endblock %}
+
+{% block main %}
+
+    <h3>Edit your account</h3>
+
+    <h5>Your username is {{username}}</h5>
+    <h5>Your email address is {{email}}</h5>
+    <br>
+
+    <form action="/account" method="post">
+        <div class="form-group">
+            <input class="form-control" id="username" name="username"
+                   placeholder="update username" type="text" 
+                   autocomplete="off" autofocus>
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="password" name="password" 
+                   placeholder="update password" type="password" 
+                   onkeyup="check();">
+            <br>
+            <input class="form-control" id="confirmation" name="confirmation" 
+                   placeholder="confirm password" type="password" 
+                   onkeyup="check();">
+            <br>
+            <span id="message"></span>
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="email" name="email" 
+                   placeholder="update email address" type="text"
+                   autocomplete="off" autofocus>
+        </div>
+        <button class="btn btn-primary" id="submit" name="submit" type="submit">
+            Register
+        </button>
+    </form>
+    <script>
+        function check() {
+            error = document.getElementById("message");
+            if (document.getElementById("password").value ==
+                    document.getElementById("confirmation").value) {
+                document.getElementById("submit").disabled = false;
+                error.innerHTML = "";
+            } else {
+                document.getElementById("submit").disabled = true;
+                error.innerHTML = "Passwords don't match";
+            }
+        }
+    </script>
+    
+{% endblock %}

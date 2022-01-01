@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Tasks
+{% endblock %}
+
+{% block main %}
+
+<h1>{{ user }}'s Tasks</h1>
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Description</th>
+                <th>Created</th>
+                <th>Due Date</th>   
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>
+                    <form action="/" method="post">
+                        <input class="btn btn-success" id="isdone" name="isdone"
+                               type="submit" value="{{task.title}}"></input>
+                    </form>
+                </td>
+                <td>{{ task.desc }}</td>
+                <td>{{ task.created }}</td>
+                <td>{{ task.due }}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    <table>
+        
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create Task
+{% endblock %}
+
+{% block main %}
+
+    <form action="/newtask" method="post">
+        <div class="form-group">
+            <input class="form-control" name="task" placeholder="task"
+                   type="text" autofocus required>
+            <input class="form-control" name="desc" placeholder="description" 
+                   type="text">
+            <input class="form-control" name="due" placeholder="due date" 
+                   type="date" min="2021-12-31" max="2023-12-31">        
+        </div>
+        <button class="btn btn-primary" type="submit" id="submit" name="submit">
+            Create task
+        </button>
+    </form>
+
+{% endblock %}
