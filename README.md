@@ -92,3 +92,5 @@
   </td>
 </table>
 <h6>Be reasonable: follow the <a href="https://cs50.harvard.edu/x/2021/honesty/">academic honesty policy</a><h6>
+  
+ <img src="https://github.com/DaveFriedman/cs50/blob/master/CS50x%20Certificate.png" alt="my cs50 certificate" width="720">
